@@ -28,7 +28,7 @@ Adafruit_AM2315 am2315;
 
 #define tempThreshold 90 // Setpoint to trigger relay on if temp is above (in degrees F)
 #define useInterval true // If true wait for intervalMinutes before rechecking. If false, recheck every 2 seconds.
-#define intervalMinutes 1 // Interval in minutes to wait before rechecking temperature.
+#define intervalMinutes 10 // Interval in minutes to wait before rechecking temperature.
 
 #define relayPin 3 // Pin that relay IN1 is attached to.
 
@@ -67,8 +67,8 @@ void loop() {
   Serial.print("Temp *F: "); Serial.println(tempF);
   Serial.print("Hum %: "); Serial.println(humidity);
 
-  //if (tempF > tempThreshold) {
-  if (humidity > 50) { // Humidity is faster to change for testing (with breath).
+  if (tempF > tempThreshold) {
+  //if (humidity > 50) { // Humidity is faster to change for testing (with breath).
     relayOn();
   } else {
     relayOff();
